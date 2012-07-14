@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#############################################
+# Author: Josh "Killswitch" Manders
+# Github: http://github.com/killswitch/spark
+# Website: http://www.joshmanders.com
+#############################################
+
+version="0.0.1"
+spark_version=`php tools/spark version`
+
+Colors() {
+Escape="\033";
+
+BlackF="${Escape}[30m";   RedF="${Escape}[31m";   GreenF="${Escape}[32m";
+YellowF="${Escape}[33m";  BlueF="${Escape}[34m";    Purplef="${Escape}[35m";
+CyanF="${Escape}[36m";    WhiteF="${Escape}[37m";
+
+BlackB="${Escape}[40m";     RedB="${Escape}[41m";     GreenB="${Escape}[42m";
+YellowB="${Escape}[43m";    BlueB="${Escape}[44m";    PurpleB="${Escape}[45m";
+CyanB="${Escape}[46m";      WhiteB="${Escape}[47m";
+
+BoldOn="${Escape}[1m";      BoldOff="${Escape}[22m";
+ItalicsOn="${Escape}[3m";   ItalicsOff="${Escape}[23m";
+UnderlineOn="${Escape}[4m";     UnderlineOff="${Escape}[24m";
+BlinkOn="${Escape}[5m";   BlinkOff="${Escape}[25m";
+InvertOn="${Escape}[7m";  InvertOff="${Escape}[27m";
+
+Reset="${Escape}[0m";
+}
+Colors;
+
+if [ "$1" == init ]; then
+
+  php -r "$(curl -fsSL http://getsparks.org/go-sparks)"
+
+elif [ "$1" == install ]; then
+
+  if [ -z "$2" ]; then
+
+    echo -e "${RedF}[ ERROR ]${Reset} Uh oh!"
+    echo "format: spark install example-spark 1.0.0"
+
+  else
+
+    php tools/spark install -v$3 $2
+
+  fi
+
+elif [ "$1" == remove ]; then
+    
+  php tools/spark remove $2 -f
+
+elif [ "$1" == version ]; then
+  
+  echo "Spark.sh version: "$version
+  echo "Spark version: "$spark_version
+
+else
+
+  php tools/spark $1 $2
+
+fi
