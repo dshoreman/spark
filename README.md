@@ -4,9 +4,9 @@ This is a bash helper script to make working with Spark on CodeIgniter easier.
 
 Install
 ------
-To install just issue the following command to your /usr/local/bin or any other place that is part of your $PATH in your terminal (sudo may need to be used if in /usr/local/bin):
+To install just issue the following command to your /usr/local/bin or any other place that is part of your $PATH in your terminal:
 
-    wget https://github.com/killswitch/spark/raw/master/spark && chmod u+x spark
+    sudo wget https://github.com/killswitch/spark/raw/master/spark && sudo chmod a+x spark
 
 Usage
 ------
