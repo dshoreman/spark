@@ -11,6 +11,10 @@ To install just issue the following command to your /usr/local/bin or any other 
 Usage
 ------
 
+You can use it to install Spark right into your CodeIgniter project by cding into your project, and typing:
+
+    spark init
+
 Usage is very similar to spark's original usage, except instead of the following:
 
     php tools/spark help
