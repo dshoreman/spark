@@ -48,5 +48,5 @@ Todo:
 
 Credits:
 =====
-[Josh Manders](http://github.com/killswitch) as author.
-[Marco Monteiro](http://twitter.com/marcogmonteiro) for inspiring me and helping test it.
+ - [Josh Manders](http://github.com/killswitch) as author.
+ - [Marco Monteiro](http://twitter.com/marcogmonteiro) for inspiring me and helping test it.
