@@ -33,18 +33,28 @@ Reset="${Escape}[0m";
 }
 Colors;
 
+function msg
+{
+  case "$1" in
+    e|E ) echo -en >&2 "${RedF}${BoldOn}[ ERROR ]";;
+    s|S ) echo -en "${GreenF}${BoldOn}[ SUCCESS ]";;
+    * ) echo -en "${BlueF}${BoldOn}[ INFO ]";;
+  esac
+  echo -e "${Reset} $2";
+}
+
 # Loop through required commands, error&exit if one isn't found
-echo "Checking required commands exist..."
+msg i "Checking required commands exist..."
 for i in "${reqs[@]}"
 do :
   # -P tells type to specifically check the PATH
   type -P "$i" > /dev/null 2>&1 || {
-    echo -e >&2 "${RedF}[ ERROR ]${Reset} $i must be installed to use this script. Aborting."
+    msg e "$i must be installed to use this script. Aborting."
     exit 1
   }
-  echo -e "${GreenF}[SUCCESS]${Reset} Required application $i is installed!"
+  msg s "Required application $i is installed!"
 done
-echo "Prerequisite checks complete"
+msg i "Prerequisite checks complete"
 echo
 
 if [ "$1" == init ]; then
@@ -55,7 +65,7 @@ elif [ "$1" == install ]; then
 
   if [ -z "$2" ]; then
 
-    echo -e "${RedF}[ ERROR ]${Reset} Uh oh!"
+    msg e "Uh oh!"
     echo "format: spark install example-spark 1.0.0"
 
   else
