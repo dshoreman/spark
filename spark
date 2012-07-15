@@ -43,6 +43,13 @@ function msg
   echo -e "${Reset} $2";
 }
 
+function install_base
+{
+  echo "Installing CI Sparks..."
+  php -r "$(curl -fsSL http://getsparks.org/go-sparks)"
+  echo
+}
+
 # Loop through required commands, error&exit if one isn't found
 msg i "Checking required commands exist..."
 for i in "${reqs[@]}"
@@ -57,9 +64,32 @@ done
 msg i "Prerequisite checks complete"
 echo
 
+# If they're trying to install/remove, check 'tools/spark' is a file
+# ...after all, there's not much we can do without it.
+if [ "$1" == install ] || [ "$1" == remove ]
+  then
+  if [ ! -f "tools/spark" ]
+    then
+    msg e "CI Sparks must be installed to $1 a spark"
+    read -p "Install CI sparks now (y/n)? " -n 1 -r
+    echo
+
+    # If the input is anything except 'yes', exit
+    if [[ ! $REPLY =~ ^[Yy]$ ]]
+      then
+      echo "Goodbye!"
+      exit 1
+    fi
+    install_base
+  fi
+
+  # Nice little info message saying we're about to install/remove stuff
+  echo i "Attempting to $1 $2 v$3"
+fi
+
 if [ "$1" == init ]; then
 
-  php -r "$(curl -fsSL http://getsparks.org/go-sparks)"
+  install_base
 
 elif [ "$1" == install ]; then
 
