@@ -43,3 +43,10 @@ Version does nothing different than the original, except it also tells you the v
 Todo:
 ====
  - Add a way to find the latest spark version and use that when doing "spark install example-spark" that way you do not need to specify the version. (Why this doesn't already exist with spark is beyond me.)
+ - Check for dependancies of OS installed, such as wget, php, etc.
+ - Check to see if you're in a proper CodeIgniter project folder.
+
+Credits:
+=====
+[Josh Manders](http://github.com/killswitch) as author.
+[Marco Monteiro](http://twitter.com/marcogmonteiro) for inspiring me and helping test it.
