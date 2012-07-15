@@ -51,4 +51,4 @@ Credits:
 ----
  - [Josh Manders](http://github.com/killswitch) as author.
  - [Marco Monteiro](http://twitter.com/marcogmonteiro) for inspiring me and helping test it.
- - [Dave Shoreman](http://twitter.com/codem0nk3y) Ninja contributor and basically rewrote all of Killswitch's crappy code. Like. A. Boss.
+ - [Dave Shoreman](http://twitter.com/codem0nk3y) Ninja contributor and basically rewrote all of Killswitch's crappy code. Like. A. Boss. (Killswitch told me to write that)
