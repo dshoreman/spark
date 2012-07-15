@@ -9,6 +9,9 @@
 version="0.0.1"
 spark_version=`php tools/spark version`
 
+# Array of commands required for this script to work
+reqs=( "php" )
+
 Colors() {
 Escape="\033";
 
@@ -29,6 +32,20 @@ InvertOn="${Escape}[7m";  InvertOff="${Escape}[27m";
 Reset="${Escape}[0m";
 }
 Colors;
+
+# Loop through required commands, error&exit if one isn't found
+echo "Checking required commands exist..."
+for i in "${reqs[@]}"
+do :
+  # -P tells type to specifically check the PATH
+  type -P "$i" > /dev/null 2>&1 || {
+    echo -e >&2 "${RedF}[ ERROR ]${Reset} $i must be installed to use this script. Aborting."
+    exit 1
+  }
+  echo -e "${GreenF}[SUCCESS]${Reset} Required application $i is installed!"
+done
+echo "Prerequisite checks complete"
+echo
 
 if [ "$1" == init ]; then
 
