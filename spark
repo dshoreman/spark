@@ -33,6 +33,15 @@ Reset="${Escape}[0m";
 }
 Colors;
 
+function die_if_not_yes
+{
+  if [[ ! $REPLY =~ ^[Yy]$ ]]
+    then
+    echo "Goodbye!"
+    exit 1
+  fi
+}
+
 function msg
 {
   case "$1" in
@@ -74,12 +83,8 @@ if [ "$1" == install ] || [ "$1" == remove ]
     read -p "Install CI sparks now (y/n)? " -n 1 -r
     echo
 
-    # If the input is anything except 'yes', exit
-    if [[ ! $REPLY =~ ^[Yy]$ ]]
-      then
-      echo "Goodbye!"
-      exit 1
-    fi
+    die_if_not_yes
+
     install_base
   fi
 
@@ -87,8 +92,19 @@ if [ "$1" == install ] || [ "$1" == remove ]
   echo i "Attempting to $1 $2 v$3"
 fi
 
-if [ "$1" == init ]; then
+if [ "$1" == init ]
+  then
+  if [ -f "tools/spark" ]
+    then
+    msg e "CI Sparks is already installed! You have version ${spark_version}."
+    read -p "Check for updates (y/n)? " -n 1 -r
+    echo
 
+    die_if_not_yes
+    hehe
+    php tools/spark upgrade-system
+    exit 0
+  fi
   install_base
 
 elif [ "$1" == install ]; then
