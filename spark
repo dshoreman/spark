@@ -7,7 +7,7 @@
 #############################################
 
 version="0.0.1"
-spark_version=`php tools/spark version`
+spark_version=`php tools/spark version 2>/dev/null || echo "Unknown"`
 
 # Array of commands required for this script to work
 reqs=( "php" )
